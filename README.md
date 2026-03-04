@@ -1,99 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
-## About Laravel 10
+# 🎓 EduFaith - Zamonaviy O'quv Markazi Boshqaruv Tizimi (CRM/ERP)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <a href="https://github.com/islamabdurahman/edu_faith"><img src="https://img.shields.io/badge/Versiya-1.0.0-blue.svg?style=for-the-badge" alt="Version"></a>
+  <a href="https://laravel.com"><img src="https://img.shields.io/badge/Laravel-9.x-FF2D20.svg?style=for-the-badge&logo=laravel" alt="Laravel"></a>
+  <a href="https://php.net"><img src="https://img.shields.io/badge/PHP-8.0+-777BB4.svg?style=for-the-badge&logo=php" alt="PHP"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Til-O'zbek%20%7C%20Rus%20%7C%20Qoraqalpoq-success.svg?style=for-the-badge" alt="Language"></a>
+</p>
 
-#
+---
 
+## 🌟 Loyiha Haqida
 
-<a href="https://payme.uz/@longevity" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+**EduFaith** — bu o'quv markazlari, maktablar va turli ta'lim muassasalarini raqamlashtirish, ularning faoliyatini avtomatlashtirish hamda ta'lim sifatini nazorat qilish maqsadida yaratilgan premium darajadagi CRM/ERP tizimidir. 
 
+Foydalanuvchilarga qulay, zamonaviy interfeys va kuchli backend arxitekturasiga ega bo'lgan ushbu platforma o'quv jarayonining barcha bosqichlarini yagona tizimda birlashtiradi.
 
+---
 
-## Featured Languages
+## ✨ Asosiy Imkoniyatlar (Features)
 
--  Uzbek
--  Uzbek Krill
--  Russian
--  Qoraqalpoq
+🚀 **Ko'p Darajali Rollar Tizimi (Multi-Role System):**
+- **SuperAdmin:** Tizimning barcha boshqaruv tugunlarini to'liq nazorat qilish va global sozlamalarni o'zgartirish huquqi.
+- **Admin & Menejer:** O'quvchilar oqimini tartibga solish, guruhlar tashkil etish, moliya va jami tahliliy hisobotlarni yuritish.
+- **O'qituvchi:** Talabalar davomatini nazorat qilish, testlar hamda baholash tizimini yuritish.
 
+👥 **O'quvchilar va Guruhlar Boshqaruvi:**
+- O'quvchilar ma'lumotlar bazasini yuritish, shartnomalar va to'lovlar holatini monitoring qilish.
+- Mutlaqo moslanuvchan dars jadvallari (graphics) va yangi guruhlar tuzish.
+- "Lid" (Potensial mijozlar/o'quvchilar) jalb qilish funksiyasi bilan ishlash.
 
-## Installation
+💰 **Moliya va To'lovlar (Billing & Finance):**
+- Mahalliy to'lov tizimlari bilan integratsiya (**Pay-uz, Payme, Click** va boshqalar yordamida avto-to'lov).
+- Xodimlar (o'qituvchi va menejerlar) uchun ishlagan soati/ulushi bo'yicha oylik maoshni (Salary) avtomatik hisoblash.
+- Kassa operatsiyalari va xarajatlarni qat'iy nazorat qilish tizimi.
 
-You can clone from GitLab:
+📊 **Davomat va Test Tizimi:**
+- O'quvchilar davomatini elektron jurnal orqali yuritish.
+- Testlar yaratish, imtihon natijalarini tizimda shakllantirish va tahlil qilish.
 
+📱 **SMS va Xabarnomalar:**
+- Nexmo (Vonage) va boshqa lokal SMS xizmatlari yordamida o'quvchilarga to'lov, dars jadvalidagi o'zgarishlar haqida avtomatik sms yuborish.
+
+📈 **Hisobotlar formati (Reports & Analytics):**
+- Keng qamrovli Excel formatdagi eksport va import imkoniyatlari (Ma'lumotlarni oson ko'chirish va zaxiralash).
+
+---
+
+## 🌍 Qo'llab-quvvatlanadigan Tillar
+
+Platforma o'z foydalanuvchilariga maksimal qulaylik yaratish maqsadida keng imkoniyatli ko'p tilli (Multi-language) interfeysga ega:
+- 🇺🇿 **O'zbek (Lotin)**
+- 🇺🇿 **O'zbek (Kirill)**
+- 🇷🇺 **Русский**
+- 🇺🇿 **Qoraqalpoq**
+
+---
+
+## ⚙️ O'rnatish bo'yicha Yo'riqnoma
+
+Dasturni mahalliy (local) serverda ishga tushirish uchun ushbu qadamlarni bajaring:
+
+**1. Repozitoriyni ko'chirib oling:**
 ```bash
 git clone git@gitlab.com:IslamAbdurahman/edu_faith.git
+cd edu_faith
 ```
 
-
-You can install composer and node modules:
-
-```bash
-composer install
-npm install
-```
-
-
-php8+  OR You can install composer ignore platform reqs:
+**2. Kutubxonalarni o'rnating:**
 ```bash
 composer install --ignore-platform-reqs
-npm install
+npm install && npm run dev
 ```
 
-
-Create storage link and generate key:
-
+**3. Muhit faylini yarating va maxfiy kalitni generatsiya qiling:**
 ```bash
-php artisan storage:link
+cp .env.example .env
 php artisan key:generate
 ```
 
-Migrate tables with seeds and payment settings:
-
+**4. Ma'lumotlar bazasini ulab, strukturani migratsiya qiling:**
+`.env` faylida Database sozlamalarini (DB_DATABASE, DB_USERNAME, DB_PASSWORD) to'g'rilagandan so'ng:
 ```bash
 php artisan migrate --seed
 ```
 
-Server run:
+**5. Storage fayllari uchun ommaviy havola (link) yarating:**
+```bash
+php artisan storage:link
+```
 
+**6. Serverni ishga tushiring:**
 ```bash
 php artisan serve
 ```
+Endi tizim lokalingizda `http://127.0.0.1:8000` manzilida ishlay boshladi! 🎉
 
-### Default user
+---
 
-```
-User : superadmin@gmail.com
-Password : 11221122
-```
+## 🔐 Tizimga Kirish (Default Access)
 
+Dasturni muvaffaqiyatli ishga tushirgach, quyidagi SuperAdmin akkounti orqali tizimga kirishingiz mumkin:
 
+> **Email:** `superadmin@gmail.com`  
+> **Parol:** `11221122`
 
-### Security
+*(Tizimga kirgach ushbu parolni o'zgartirish tavsiya etiladi!)*
 
-If you discover any security related issues, please email abdurahmanislam304@gmail.com instead of using the issue tracker.
+---
 
+## ☕ Muallifni Qo'llab-quvvatlash
 
+Agar ushbu loyiha sizga manzur kelgan bo'lsa yoki biznesingiz rivojiga o'z hissasini qo'shsa, loyiha muallifini qo'llab-quvvatlashingiz mumkin:
 
-## Credits
+<p align="center">
+  <a href="https://payme.uz/@longevity" target="_blank">
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
+  </a>
+</p>
 
-- [GitHub](https://github.com/islamabdurahman)
-- [GitLab](https://gitlab.com/islamabdurahman)
-####
-- [TouTube](https://www.youtube.com/@IslamAbdurahman)
-- [Telegram](https://t.me/LiveLongevity)
-####
-- [All Contributors](../../contributors)
+---
 
-## License
+## 👨‍💻 Aloqa va Ijtimoiy Tarmoqlar
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+Loyihaga qiziqish bildirganingiz uchun tashakkur! Muallif bilan bog'lanish uchun:
+
+🎓 **Islam Abdurahman**
+
+- 🌐 [GitHub - islamabdurahman](https://github.com/islamabdurahman)
+- 🦊 [GitLab - islamabdurahman](https://gitlab.com/islamabdurahman)
+- 📺 [YouTube - @IslamAbdurahman](https://www.youtube.com/@IslamAbdurahman)
+- ✈️ [Telegram - @LiveLongevity](https://t.me/LiveLongevity)
+- 📧 Poshcha xizmati: abdurahmanislam304@gmail.com
+
+---
+
+<p align="center">
+  <i>EduFaith loyihasi <a href="LICENSE.md">MIT Litsenziyasi</a> ostida tarqatiladi. Ta'lim raqamlashtirishiga o'z hissangizni qo'shing!</i>
+</p>
