@@ -24,6 +24,7 @@ Foydalanuvchilarga qulay, zamonaviy interfeys va kuchli backend arxitekturasiga 
 ## ✨ Asosiy Imkoniyatlar (Features)
 
 🚀 **Ko'p Darajali Rollar Tizimi (Multi-Role System):**
+- **Spatie Laravel Permission** orqali ruxsatlar dinamik tarzda boshqariladi.
 - **SuperAdmin:** Tizimning barcha boshqaruv tugunlarini to'liq nazorat qilish va global sozlamalarni o'zgartirish huquqi.
 - **Admin & Menejer:** O'quvchilar oqimini tartibga solish, guruhlar tashkil etish, moliya va jami tahliliy hisobotlarni yuritish.
 - **O'qituvchi:** Talabalar davomatini nazorat qilish, testlar hamda baholash tizimini yuritish.
@@ -42,8 +43,10 @@ Foydalanuvchilarga qulay, zamonaviy interfeys va kuchli backend arxitekturasiga 
 - O'quvchilar davomatini elektron jurnal orqali yuritish.
 - Testlar yaratish, imtihon natijalarini tizimda shakllantirish va tahlil qilish.
 
-📱 **SMS va Xabarnomalar:**
-- Nexmo (Vonage) va boshqa lokal SMS xizmatlari yordamida o'quvchilarga to'lov, dars jadvalidagi o'zgarishlar haqida avtomatik sms yuborish.
+📱 **Xabarnomalar va Orqa fon Jarayonlari (Queues & Telegram Bot):**
+- **Telegram Bot SDK:** Tizimga Telegram Bot ulangan bo'lib, o'quvchilarga to'lov, dars jadvalidagi o'zgarishlar va boshqalar yuzasidan xabarnomalar telegram orqali keladi (avtomatlashtirilgan Webhook integratsiyasi).
+- **Asinxron SMS/Xabarnomalar (Jobs & Queues):** Minglab ustoz va o'quvchilarga xabar jo'natish foydalanuvchi oynasini qotirib qo'ymasligi uchun "Queue" orqali fonga o'tkazilgan (Background processing).
+- Lokal SMS xizmatlar (Eskiz, PlayMobile, sysdc) integratsiyasi mavjud.
 
 📈 **Hisobotlar formati (Reports & Analytics):**
 - Keng qamrovli Excel formatdagi eksport va import imkoniyatlari (Ma'lumotlarni oson ko'chirish va zaxiralash).
@@ -93,11 +96,23 @@ php artisan migrate --seed
 php artisan storage:link
 ```
 
-**6. Serverni ishga tushiring:**
+**6. Asinxron jarayonlarni (Queue) va Serverni ishga tushiring:**
+Katta hajmdagi SMS xabarlar va eksport/import amaliyotlari platforma qotib qolmasligi uchun fonga o'tkazilgan. Ularni ishlab turishi uchun alohida terminal oynasida worker'ni yoqing:
+```bash
+php artisan queue:work
+```
+So'ngra asosiy serverni yoqing:
 ```bash
 php artisan serve
 ```
 Endi tizim lokalingizda `http://127.0.0.1:8000` manzilida ishlay boshladi! 🎉
+
+**7. Telegram Bot ni sozlash (Opsional):**
+Tizimda Telegram Webhook xizmatlari ishlashi uchun `.env` da `TELEGRAM_BOT_TOKEN=huddi_shu_yerga_token` qatorini qo'shing.  
+So'ng Webhook manzilini ishga tushiring:
+```bash
+php artisan telegram:webhook
+```
 
 ---
 
