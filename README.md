@@ -127,17 +127,7 @@ Dasturni muvaffaqiyatli ishga tushirgach, quyidagi SuperAdmin akkounti orqali ti
 
 ---
 
-## ☕ Muallifni Qo'llab-quvvatlash
 
-Agar ushbu loyiha sizga manzur kelgan bo'lsa yoki biznesingiz rivojiga o'z hissasini qo'shsa, loyiha muallifini qo'llab-quvvatlashingiz mumkin:
-
-<p align="center">
-  <a href="https://payme.uz/@longevity" target="_blank">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" >
-  </a>
-</p>
-
----
 
 ## 👨‍💻 Aloqa va Ijtimoiy Tarmoqlar
 
