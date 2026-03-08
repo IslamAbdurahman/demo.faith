@@ -14,29 +14,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::user()){
-        if (\Illuminate\Support\Facades\Auth::user()->role == 1){
-
-            return redirect()->route('dashboard.index');
-        }elseif (\Illuminate\Support\Facades\Auth::user()->role == 4){
-            return redirect()->route('groups.index');
-
-        }else{
-            return view('welcome');
-        }
-
-    }else{
-        return redirect()->route('login');
-
-    }
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('index', function (){
-        return view('index');
-    })->name('home.index');
+    Route::get('index', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('home.index');
 
     ///// Super admin routes /////
     Route::group(['prefix'=>'admin','middleware'=>'super_admin'], function (){
@@ -151,19 +133,10 @@ Route::get('payment_check/{id}', [\App\Http\Controllers\PaymentController::class
 
 
 //handle requests from payment system
-Route::any('/handle/{paysys}',function($paysys){
-    (new Goodoneuz\PayUz\PayUz)->driver($paysys)->handle();
-});
+Route::any('/handle/{paysys}', [\App\Http\Controllers\PaymentController::class, 'handle'])->name('payment.handle');
 
 //redirect to payment system or payment form
-Route::any('/pay/{paysys}/{key}/{amount}',function($paysys, $key, $amount){
-    $model = Goodoneuz\PayUz\Services\PaymentService::convertKeyToModel($key);
-    $url = request('redirect_url','/'); // redirect url after payment completed
-    $pay_uz = new Goodoneuz\PayUz\PayUz;
-    $pay_uz
-        ->driver($paysys)
-        ->redirect($model, $amount, 860, $url);
-})->name('click');
+Route::any('/pay/{paysys}/{key}/{amount}', [\App\Http\Controllers\PaymentController::class, 'redirect'])->name('click');
 
 
 

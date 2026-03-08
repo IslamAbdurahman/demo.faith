@@ -95,22 +95,7 @@ class StudentsController extends Controller
                 ->get();
         }
 
-        foreach ($students as $student) {
-            $date = \Illuminate\Support\Carbon::now()->setTimezone('Asia/Tashkent')->format('Y-m-d H:i:s');
-
-            $sms = SmsService::send_sms($student->phone, $request->sms);
-            SmsService::send_sms($student->parent_phone, $request->sms);
-
-            Sms::create([
-                'student_id' => $student->id,
-                'user_id' => Auth::user()->id,
-                'text' => $request->sms,
-                'date' => $date,
-                'service_id' => $sms->service_id,
-                'status' => $sms->status
-            ]);
-
-        }
+        \App\Jobs\SendSmsJob::dispatch($students, $request->sms, Auth::user()->id);
 
         return redirect()->back()->withErrors([
             'success' => __('lang.all_sms_sent'),

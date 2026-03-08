@@ -14,7 +14,27 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['welcome']);
+    }
+
+    public function welcome()
+    {
+        if (Auth::user()) {
+            if (Auth::user()->role == 1) {
+                return redirect()->route('dashboard.index');
+            } elseif (Auth::user()->role == 4) {
+                return redirect()->route('groups.index');
+            } else {
+                return view('welcome');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    public function dashboard()
+    {
+        return view('index');
     }
 
     /**

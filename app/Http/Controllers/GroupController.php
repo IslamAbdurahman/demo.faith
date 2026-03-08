@@ -43,20 +43,7 @@ class GroupController extends Controller
             ->get();
 
 
-        foreach ($students as $student){
-            $sms = SmsService::send_sms($student->phone,'Teacher: '.Auth::user()->name.' -- '.$request->sms);
-            SmsService::send_sms($student->parent_phone,'Teacher: '.Auth::user()->name.' -- '.$request->sms);
-
-            Sms::create([
-                'student_id'=>$student->id,
-                'user_id'=> Auth::user()->id,
-                'text'=>'Teacher: '.Auth::user()->name.' -- '.$request->sms,
-                'date'=>tash_time(),
-                'service_id'=>$sms->service_id,
-                'status'=>$sms->status
-            ]);
-
-        }
+        \App\Jobs\SendSmsJob::dispatch($students, 'Teacher: ' . Auth::user()->name . ' -- ' . $request->sms, Auth::user()->id);
 
         return redirect()->back()->withErrors([
             'success'=>__('lang.all_sms_sent'),
