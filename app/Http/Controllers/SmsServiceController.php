@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Science;
+use App\Http\Requests\SmsServiceStoreRequest;
+use App\Http\Requests\SmsServiceUpdateRequest;
 use App\Models\SmsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -36,13 +38,8 @@ class SmsServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SmsServiceStoreRequest $request)
     {
-        $request->validate([
-            'email'=>'required',
-            'password'=>'required'
-        ]);
-
         try {
             $url = 'notify.eskiz.uz/api/auth/login';
 
@@ -96,15 +93,9 @@ class SmsServiceController extends Controller
      * @param  \App\Models\SmsService  $smsService
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SmsService $smsService)
+    public function update(SmsServiceUpdateRequest $request, SmsService $smsService)
     {
         try {
-            $request->validate([
-                'nickname'=>'required',
-                'key'=>'required',
-                'secret'=>'required',
-                'token'=>'required',
-            ]);
             if ($smsService->name == 'eskiz'){
                 $url_login = 'notify.eskiz.uz/api/auth/login';
 

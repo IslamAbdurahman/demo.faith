@@ -6,6 +6,7 @@ use App\Models\Attendance;
 use App\Models\Group;
 use App\Models\Sms;
 use App\Models\SmsService;
+use App\Http\Requests\AttendanceStoreRequest;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,12 +40,8 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AttendanceStoreRequest $request)
     {
-        $request->validate([
-            'status'=>'required'
-        ]);
-
         $list = [];
         $array = $request->status;
         foreach ($array as $key => $item){

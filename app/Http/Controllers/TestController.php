@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TestStoreRequest;
+use App\Http\Requests\TestUpdateRequest;
 use App\Models\Students;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -67,13 +69,8 @@ class TestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TestStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'date'=>'required'
-        ]);
-
         $test = new Test();
         $test->name = $request->name;
         $test->date = $request->date;
@@ -151,13 +148,8 @@ class TestController extends Controller
      * @param  \App\Models\Test  $test
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Test $test)
+    public function update(TestUpdateRequest $request, Test $test)
     {
-        $request->validate([
-            'name'=>'required',
-            'date'=>'required'
-        ]);
-
         $test->name = $request->name;
         $test->date = $request->date;
         $test->update();

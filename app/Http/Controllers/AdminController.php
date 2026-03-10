@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminStoreRequest;
+use App\Http\Requests\AdminUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,21 +63,9 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'phone'=>'required|string|min:12|max:12|unique:users,phone',
-            'email'=>'required|unique:users,email',
-            'password'=>'required',
-            'role'=>'required'
-        ]);
-
-
         if ($request->hasFile('image')){
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-            ]);
             $filename = time().rand(1000, 9999).".".$request->image->extension();
             $request->file('image')->storeAs('public/images',$filename);
 
@@ -136,29 +126,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateRequest $request, $id)
     {
         try {
-            $request->validate([
-                'name'=>'required',
-                'email'=>'required',
-                'password'=>'required',
-                'phone'=>'required|string|min:12|max:12',
-            ]);
-
             $admin = User::find($id);
 
-            if ($request->phone != $admin->phone){
-                $request->validate([
-                    'phone'=>'required|string|min:12|max:12|unique:users,phone',
-                ]);
-            }
-
-
             if ($request->hasFile('image')){
-                $request->validate([
-                    'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-                ]);
                 $filename = time().rand(1000, 9999).".".$request->image->extension();
                 $request->file('image')->storeAs('public/images',$filename);
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ScienceStoreRequest;
+use App\Http\Requests\ScienceUpdateRequest;
 use App\Models\Science;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -71,12 +73,8 @@ class ScienceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScienceStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $science = new Science();
         $science->name = $request->name;
         $science->save();
@@ -115,12 +113,8 @@ class ScienceController extends Controller
      * @param  \App\Models\Science  $science
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Science $science)
+    public function update(ScienceUpdateRequest $request, Science $science)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $science->name = $request->name;
         $science->update();
 

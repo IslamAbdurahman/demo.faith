@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentImportRequest;
+use App\Http\Requests\StudentSmsRequest;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 use App\Exports\StudentExport;
 use App\Imports\StudentsImport;
 use App\Jobs\ImportStudentsJob;
@@ -20,11 +24,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StudentsController extends Controller
 {
-    public function import(Request $request)
+    public function import(StudentImportRequest $request)
     {
-        $request->validate([
-            'file_excel' => 'required|mimes:xls,xlsx'
-        ]);
 
 //        dd($request->file('file_excel'));
 
@@ -51,11 +52,8 @@ class StudentsController extends Controller
     }
 
 
-    public function students_sms(Request $request)
+    public function students_sms(StudentSmsRequest $request)
     {
-        $request->validate([
-            'sms' => 'required',
-        ]);
 
         if ($request->search && $request->group) {
             $search = $request->search;
@@ -188,16 +186,8 @@ class StudentsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'gender' => 'required',
-//            'birth_date'=>'required',
-//            'phone'=>'required|string|min:12|max:12|unique:students,phone',
-//            'parent_phone'=>'required|string|min:12|max:12',
-            'discount_education' => 'required',
-        ]);
 
         $students = Students::all()->count();
         $limit = limit_students();
@@ -292,22 +282,8 @@ class StudentsController extends Controller
      * @param \App\Models\Students $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Students $student)
+    public function update(StudentUpdateRequest $request, Students $student)
     {
-        $request->validate([
-            'name' => 'required',
-            'gender' => 'required',
-//            'birth_date'=>'required',
-//            'phone'=>'required|string|min:12|max:12',
-//            'parent_phone'=>'required|string|min:12|max:12',
-            'discount_education' => 'required',
-        ]);
-
-        if ($request->phone != $student->phone) {
-            $request->validate([
-                'phone' => 'required|string|min:12|max:12|unique:students,phone',
-            ]);
-        }
 
         $student->name = $request->name;
         $student->gender = $request->gender;

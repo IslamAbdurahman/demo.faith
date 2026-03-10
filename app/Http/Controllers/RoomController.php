@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoomStoreRequest;
+use App\Http\Requests\RoomUpdateRequest;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,12 +77,8 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $room = new Room();
         $room->name = $request->name;
         $room->save();
@@ -162,12 +160,8 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Room $room)
+    public function update(RoomUpdateRequest $request, Room $room)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $room->name = $request->name;
         $room->update();
 

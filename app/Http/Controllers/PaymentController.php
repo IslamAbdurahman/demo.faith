@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PaymentExport;
+use App\Http\Requests\PaymentStoreRequest;
 use App\Models\Graphic;
 use App\Models\Group;
 use App\Models\Kassa;
@@ -879,15 +880,8 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentStoreRequest $request)
     {
-        $request->validate([
-            'kassa_id'=>'required',
-            'graphic_id'=>'required',
-            'amount'=>'required',
-            'discount'=>'required',
-        ]);
-
         $kassa = Kassa::find($request->kassa_id);
         $graphic = Graphic::find($request->graphic_id);
 

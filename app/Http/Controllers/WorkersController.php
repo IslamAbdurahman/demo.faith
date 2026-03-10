@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WorkerStoreRequest;
+use App\Http\Requests\WorkerUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,20 +57,9 @@ class WorkersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WorkerStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'phone'=>'required|string|min:12|max:12|unique:users,phone',
-            'email'=>'required|unique:users,email',
-            'password'=>'required'
-        ]);
-
-
         if ($request->hasFile('image')){
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-            ]);
             $filename = time().rand(1000, 9999).".".$request->image->extension();
             $request->file('image')->storeAs('public/images',$filename);
 
@@ -128,26 +119,10 @@ class WorkersController extends Controller
      * @param  \App\Models\User  $worker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,User $worker)
+    public function update(WorkerUpdateRequest $request,User $worker)
     {
         try {
-            $request->validate([
-                'name'=>'required',
-                'phone'=>'required|string|min:12|max:12',
-                'email'=>'required',
-                'password'=>'required'
-            ]);
-
-            if ($request->phone != $worker->phone){
-                $request->validate([
-                    'phone'=>'required|string|min:12|max:12|unique:users,phone',
-                ]);
-            }
-
             if ($request->hasFile('image')){
-                $request->validate([
-                    'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-                ]);
                 $filename = time().rand(1000, 9999).".".$request->image->extension();
                 $request->file('image')->storeAs('public/images',$filename);
 

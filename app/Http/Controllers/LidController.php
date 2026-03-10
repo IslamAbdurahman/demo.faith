@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LidStoreRequest;
+use App\Http\Requests\LidUpdateRequest;
 use App\Models\Group;
 use App\Models\Lid;
 use Illuminate\Http\Request;
@@ -58,12 +60,8 @@ class LidController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LidStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $lid = new Lid();
         $lid->name = $request->name;
         $lid->save();
@@ -129,12 +127,8 @@ class LidController extends Controller
      * @param  \App\Models\Lid  $lid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lid $lid)
+    public function update(LidUpdateRequest $request, Lid $lid)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $lid->name = $request->name;
         $lid->update();
 

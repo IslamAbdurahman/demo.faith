@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ResultsExport;
+use App\Http\Requests\ResultStoreRequest;
+use App\Http\Requests\ResultUpdateRequest;
 use App\Models\Result;
 use App\Models\Sms;
 use App\Models\SmsService;
@@ -49,14 +51,8 @@ class ResultController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResultStoreRequest $request)
     {
-        $request->validate([
-            'test_id'=>'required',
-            'student_id'=>'required',
-            'result'=>'required'
-        ]);
-
         $result = new Result();
         $result->test_id = $request->test_id;
         $result->student_id = $request->student_id;
@@ -122,12 +118,8 @@ class ResultController extends Controller
      * @param  \App\Models\Result  $result
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Result $result)
+    public function update(ResultUpdateRequest $request, Result $result)
     {
-        $request->validate([
-            'result'=>'required'
-        ]);
-
         $result->result = $request->result;
         $result->update();
 

@@ -7,6 +7,8 @@ use App\Models\Group;
 use App\Models\Sms;
 use App\Models\SmsService;
 use App\Models\StudentGroup;
+use App\Http\Requests\StudentGroupStoreRequest;
+use App\Http\Requests\StudentGroupUpdateRequest;
 use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,13 +42,8 @@ class StudentGroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentGroupStoreRequest $request)
     {
-        $request->validate([
-            'student_id'=>'required',
-            'group_id'=>'required'
-        ]);
-
         $students = $request->student_id;
 
         $months = DB::select("SELECT * FROM graphics WHERE group_id = ".$request->group_id.
@@ -136,13 +133,8 @@ class StudentGroupController extends Controller
      * @param  \App\Models\StudentGroup  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(StudentGroupUpdateRequest $request,$id)
     {
-        $request->validate([
-            'group_id'=>'required',
-            'sms'=>'required'
-        ]);
-
         $student = Students::find($id);
 
         $sms = SmsService::send_sms($student->phone,'Teacher: '.Auth::user()->name.' -- '.$request->sms);

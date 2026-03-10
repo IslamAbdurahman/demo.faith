@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FormStoreRequest;
 use App\Models\Students;
 use Illuminate\Http\Request;
 
@@ -34,16 +35,8 @@ class FormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormStoreRequest $request)
     {
-            $request->validate([
-                'name'=>'required',
-                'gender'=>'required',
-                'birth_date'=>'required',
-                'phone'=>'required|string|min:12|max:12|unique:students,phone',
-                'parent_phone'=>'required|string|min:12|max:12',
-            ]);
-
         $students = Students::all()->count();
         $limit = limit_students();
 

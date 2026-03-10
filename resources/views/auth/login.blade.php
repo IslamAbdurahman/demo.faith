@@ -119,7 +119,6 @@
     });
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/pages/dashboard.min.js"></script>
 
 
 <!-- Bootstrap 4 -->

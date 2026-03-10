@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exports\GroupExport;
+use App\Http\Requests\GroupSmsRequest;
+use App\Http\Requests\GroupStoreRequest;
+use App\Http\Requests\GroupUpdateRequest;
 use App\Models\Attendance;
 use App\Models\Course;
 use App\Models\Graphic;
@@ -28,11 +31,7 @@ class GroupController extends Controller
         $group = Group::find($group_id);
         return Excel::download($results, $group->name.'-results.xlsx');
     }
-    public function group_sms(Request $request){
-        $request->validate([
-            'sms'=>'required',
-            'group_id'=>'required'
-        ]);
+    public function group_sms(GroupSmsRequest $request){
 
         $students = DB::table('student_groups as sg')
             ->join('students as s','s.id','=','sg.student_id')
@@ -232,20 +231,8 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'level'=>'required',
-            'amount'=>'required',
-            'teacher_id'=>'required',
-            'course_id'=>'required',
-            'room_id'=>'required',
-            'days'=>'required',
-            'percent'=>'required',
-            'starts_at'=>'required',
-            'ends_at'=>'required',
-        ]);
 
         $room_groups = DB::table('groups as g')
             ->join('users as t','t.id','=','g.teacher_id')
@@ -422,20 +409,8 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(GroupUpdateRequest $request, Group $group)
     {
-        $request->validate([
-            'name'=>'required',
-            'level'=>'required',
-            'amount'=>'required',
-            'teacher_id'=>'required',
-            'course_id'=>'required',
-            'room_id'=>'required',
-            'days'=>'required',
-            'percent'=>'required',
-            'starts_at'=>'required',
-            'ends_at'=>'required',
-        ]);
 
         $room_groups = DB::table('groups as g')
             ->join('users as t','t.id','=','g.teacher_id')

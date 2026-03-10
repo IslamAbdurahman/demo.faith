@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeacherStoreRequest;
+use App\Http\Requests\TeacherUpdateRequest;
 use App\Models\Science;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -79,19 +81,9 @@ class TeacherController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeacherStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required|string|min:12|max:12|unique:users,phone',
-            'science_id' => 'required',
-        ]);
-
-
         if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-            ]);
             $filename = time() . rand(1000, 9999) . "." . $request->image->extension();
             $request->file('image')->storeAs('public/images', $filename);
 
@@ -149,25 +141,10 @@ class TeacherController extends Controller
      * @param \App\Models\User $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $teacher)
+    public function update(TeacherUpdateRequest $request, User $teacher)
     {
         try {
-            $request->validate([
-                'name' => 'required',
-                'phone' => 'required|string|min:12|max:12',
-                'science_id' => 'required',
-            ]);
-
-            if ($request->phone != $teacher->phone) {
-                $request->validate([
-                    'phone' => 'required|string|min:12|max:12|unique:users,phone',
-                ]);
-            }
-
             if ($request->hasFile('image')) {
-                $request->validate([
-                    'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
-                ]);
                 $filename = time() . rand(1000, 9999) . "." . $request->image->extension();
                 $request->file('image')->storeAs('public/images', $filename);
 

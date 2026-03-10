@@ -26,52 +26,62 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
-function tash_time(){
-    $date = \Carbon\Carbon::now('Asia/Tashkent')->format('Y-m-d H:i:s');
-    return $date;
+if (!function_exists('tash_time')) {
+    function tash_time(){
+        $date = \Carbon\Carbon::now('Asia/Tashkent')->format('Y-m-d H:i:s');
+        return $date;
+    }
 }
 
-function tash_date(){
-    $date = \Carbon\Carbon::now('Asia/Tashkent')->format('Y-m-d');
-    return $date;
+if (!function_exists('tash_date')) {
+    function tash_date(){
+        $date = \Carbon\Carbon::now('Asia/Tashkent')->format('Y-m-d');
+        return $date;
+    }
 }
 
-function limit_students(){
-    $limit = Http::accept('application/json')->get('faith.uz/expire',[
-                    'url'=>$_SERVER['HTTP_HOST']
-                ])->object()->limit;
-
-    return $limit;
-
-}
-
-function expire(){
-    try {
-        $expire = round((strtotime(
-                    Http::accept('application/json')->get('faith.uz/expire',[
+if (!function_exists('limit_students')) {
+    function limit_students(){
+        $limit = Http::accept('application/json')->get('faith.uz/expire',[
                         'url'=>$_SERVER['HTTP_HOST']
-                    ])->object()->data)-strtotime(date('Y-m-d H:i:s')))/(24*60*60),2);
+                    ])->object()->limit;
 
-        return $expire;
-    }catch (Exception $exception){
-        return 0;
+        return $limit;
+
     }
-
-
 }
 
-function expire_date(){
+if (!function_exists('expire')) {
+    function expire(){
+        try {
+            $expire = round((strtotime(
+                        Http::accept('application/json')->get('faith.uz/expire',[
+                            'url'=>$_SERVER['HTTP_HOST']
+                        ])->object()->data)-strtotime(date('Y-m-d H:i:s')))/(24*60*60),2);
 
-    try {
-        $date = Http::accept('application/json')->get('faith.uz/expire',[
-            'url'=>$_SERVER['HTTP_HOST']
-        ])->object()->data;
+            return $expire;
+        }catch (Exception $exception){
+            return 0;
+        }
 
-        return date('Y-m-d', strtotime($date));
-    }catch (Exception $exception){
-        return date('Y-m-d');
+
     }
+}
 
+if (!function_exists('expire_date')) {
+    function expire_date(){
+
+        try {
+            $date = Http::accept('application/json')->get('faith.uz/expire',[
+                'url'=>$_SERVER['HTTP_HOST']
+            ])->object()->data;
+
+            return date('Y-m-d', strtotime($date));
+        }catch (Exception $exception){
+            return date('Y-m-d');
+        }
+
+    }
 }
 
 $app->singleton(

@@ -274,7 +274,6 @@
 
 
 
-    <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script>
         $(function () {
             // Get context with jQuery - using jQuery's .get() method.

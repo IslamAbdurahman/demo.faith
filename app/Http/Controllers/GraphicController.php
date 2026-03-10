@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Exports\GraphicExport;
+use App\Http\Requests\GraphicFullSmsRequest;
+use App\Http\Requests\GraphicSmsRequest;
+use App\Http\Requests\GraphicStoreRequest;
 use App\Models\Graphic;
 use App\Models\Group;
 use App\Models\Sms;
@@ -34,11 +37,8 @@ class GraphicController extends Controller
         return Excel::download($graphic, date("Y-m-d H:i:s") . '-graphics.xlsx');
     }
 
-    public function graphic_sms(Request $request, $graphic_id)
+    public function graphic_sms(GraphicSmsRequest $request, $graphic_id)
     {
-        $request->validate([
-            'sms' => 'required',
-        ]);
 
         $graphic = Graphic::find($graphic_id);
         $student = Students::find($graphic->student_id);
@@ -62,12 +62,8 @@ class GraphicController extends Controller
     }
 
 
-    public function graphic_full_sms(Request $request)
+    public function graphic_full_sms(GraphicFullSmsRequest $request)
     {
-        $request->validate([
-            'month' => 'required',
-            'group_id' => 'required',
-        ]);
 
         $graphics = DB::table('graphics as gr')
             ->join('students as s', 's.id', '=', 'gr.student_id')
@@ -584,14 +580,8 @@ class GraphicController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GraphicStoreRequest $request)
     {
-        $request->validate([
-            'year' => 'required',
-            'month_list' => 'required',
-            'group_id' => 'required',
-            'education' => 'required'
-        ]);
 
         $students = DB::table('students as s')
             ->join('student_groups as sg', 's.id', '=', 'sg.student_id')

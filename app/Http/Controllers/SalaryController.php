@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\SalaryExport;
+use App\Http\Requests\SalaryStoreRequest;
 use App\Models\Kassa;
 use App\Models\Salary;
 use App\Models\Sms;
@@ -114,16 +115,8 @@ class SalaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SalaryStoreRequest $request)
     {
-        $request->validate([
-            'kassa_id'=>'required',
-            'worker_id'=>'required',
-            'amount'=>'required',
-            'comment'=>'required',
-            'personal'=>'required',
-        ]);
-
         $kassa = Kassa::find($request->kassa_id);
         if ($kassa->balance < $request->amount){
             return redirect()->back()->withErrors([

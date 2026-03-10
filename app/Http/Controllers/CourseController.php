@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseStoreRequest;
+use App\Http\Requests\CourseUpdateRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -70,12 +72,8 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseStoreRequest $request)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $course = new Course();
         $course->name = $request->name;
         $course->save();
@@ -114,12 +112,8 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(CourseUpdateRequest $request, Course $course)
     {
-        $request->validate([
-            'name'=>'required'
-        ]);
-
         $course->name = $request->name;
         $course->update();
 
